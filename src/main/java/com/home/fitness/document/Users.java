@@ -1,4 +1,4 @@
-package com.example.demo1.document;
+package com.home.fitness.document;
 
 
 import org.springframework.data.annotation.Id;
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Document(collection = "tweets")
-public class Tweet {
+public class Users {
     @Id
     private String id;
 
