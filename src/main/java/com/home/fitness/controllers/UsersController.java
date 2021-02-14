@@ -1,7 +1,7 @@
 package com.home.fitness.controllers;
 
 
-import com.home.fitness.document.Users;
+import com.home.fitness.documents.Users;
 import com.home.fitness.repository.UsersRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,29 +20,29 @@ public class UsersController {
     private UsersRepository usersRepository;
     private static final Logger log = Logger.getLogger(UsersController.class);
 
-    @GetMapping("/tweets")
-    public Flux<Users> getAllTweets() {
+    @GetMapping("/users")
+    public Flux<Users> getAllUsers() {
         return usersRepository.findAll();
     }
 
-    @PostMapping("/tweets")
-    public Mono<Users> createTweets(@Valid @RequestBody Users users) {
+    @PostMapping("/register")
+    public Mono<Users> createUsers(@Valid @RequestBody Users users) {
         return usersRepository.save(users);
     }
 
-    @GetMapping("/tweets/{id}")
-    public Mono<ResponseEntity<Users>> getTweetById(@PathVariable(value = "id") String tweetId) {
-        return usersRepository.findById(tweetId)
+    @GetMapping("/users/{id}")
+    public Mono<ResponseEntity<Users>> getUserById(@PathVariable(value = "id") String userId) {
+        return usersRepository.findById(userId)
                 .map(savedUsers -> ResponseEntity.ok(savedUsers))
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/tweets/{id}")
-    public Mono<ResponseEntity<Users>> updateTweet(@PathVariable(value = "id") String tweetId,
+    @PutMapping("/users/{id}")
+    public Mono<ResponseEntity<Users>> updateUser(@PathVariable(value = "id") String userId,
                                                    @Valid @RequestBody Users users) {
-        return usersRepository.findById(tweetId)
+        return usersRepository.findById(userId)
                 .flatMap(existingUsers -> {
-                    existingUsers.setText(users.getText());
+                    existingUsers.setLogin(users.getLogin());
                     return usersRepository.save(existingUsers);
                 })
                 .map(updatedUsers -> new ResponseEntity<>(updatedUsers, HttpStatus.OK))
