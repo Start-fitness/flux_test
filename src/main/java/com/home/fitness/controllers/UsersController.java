@@ -15,6 +15,7 @@ import javax.validation.Valid;
 
 
 @RestController
+@CrossOrigin(origins = { "http://localhost:4200"})
 public class UsersController {
     @Autowired
     private UsersRepository usersRepository;
@@ -26,6 +27,7 @@ public class UsersController {
     }
 
     @PostMapping("/register")
+    @CrossOrigin(origins = { "http://localhost:4200"})
     public Mono<Users> createUsers(@Valid @RequestBody Users users) {
         return usersRepository.save(users);
     }

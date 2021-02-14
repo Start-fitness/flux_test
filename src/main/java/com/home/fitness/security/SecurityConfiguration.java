@@ -2,6 +2,7 @@ package com.home.fitness.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -33,9 +34,11 @@ public class SecurityConfiguration {
 //                .authenticationManager(authenticationManager)
 //                .securityContextRepository(securityContextRepository)
 //                .authorizeExchange()
-//                .pathMatchers(HttpMethod.OPTIONS).permitAll()
-//                .pathMatchers("/auth/login/guest").permitAll()
+////                .pathMatchers(HttpMethod.OPTIONS)
+////                .permitAll()
+//                .pathMatchers("/register/auth/users").permitAll()
 //                .anyExchange().authenticated()
+//                .and()
                 .build();
     }
 
