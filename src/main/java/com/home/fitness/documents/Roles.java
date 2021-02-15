@@ -1,0 +1,16 @@
+package com.home.fitness.documents;
+
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "role")
+@Data
+public class Roles {
+    @Id
+    private String Id;
+    @Indexed(unique = true, direction = IndexDirection.ASCENDING)
+    private String role;
+}
