@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -23,7 +24,8 @@ public class CustomUserDetailsService implements ReactiveUserDetailsService {
 
     @Override
     public Mono<UserDetails> findByUsername(String email) {
-        return usersRepository.findUsersByEmail(email);
+        return usersRepository.findByEmail(email);
+
     }
     public Mono<Users> saveUser(Users user){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));

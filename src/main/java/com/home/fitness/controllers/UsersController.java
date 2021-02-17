@@ -29,16 +29,16 @@ public class UsersController {
     @Autowired
     private JwtUtil jwtUtil;
 
-
     @PostMapping("/register")
     @CrossOrigin(origins = {"http://localhost:4200"})
     public Mono<Users> createUsers(@Valid @RequestBody Users user) {
         return userService.saveUser(user);
     }
 
+
     @PostMapping("/login")
     @CrossOrigin(origins = {"http://localhost:4200"})
-    public Mono<ResponseEntity> login(ServerWebExchange swe) {
+    public Mono<ResponseEntity<?>> login(ServerWebExchange swe) {
         return swe.getFormData()
                 .flatMap(credentials -> userService.findByUsername(credentials.getFirst("email"))
                         .cast(Users.class)
