@@ -14,4 +14,5 @@ public class FitnessApplication {
     }
 // Web Flux https://www.youtube.com/watch?v=77-wOZs2nPE&ab_channel=letsCode
 // Web Flux JWT https://www.youtube.com/watch?v=GYQGaEC9Hog&ab_channel=letsCode
+    //https://ard333.medium.com/authentication-and-authorization-using-jwt-on-spring-webflux-29b81f813e78
 }
